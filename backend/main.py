@@ -4,9 +4,20 @@ import random
 import time
 import threading
 
-from data import HygrometerReading, Event  # adjust import if needed
+
+
+from data import HygrometerReading, Event
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="Smart Hygrometer API", version="1.0.0")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # -------------------------
 # In-memory storage (MVP)
